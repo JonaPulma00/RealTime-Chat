@@ -43,6 +43,11 @@
         "type": "anyComponentStyle",
         "maximumWarning": "10kB",
         "maximumError": "20kB"
+      },
+      {
+        "type": "inline-fonts",
+        "maximumWarning": "80kB",
+        "maximumError": "100kB"
       }
     ],
     "outputHashing": "all"
