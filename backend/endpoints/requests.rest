@@ -1,0 +1,79 @@
+ ### Registre usuari
+ POST http://localhost:3100/api/v1/register
+ Content-Type: application/json
+ 
+{
+  "user": "testUser",
+  "email": "testUser@gmail.com",
+  "password": "patata123*"
+}
+
+###Login usuari
+POST http://localhost:3100/api/v1/login
+Content-Type: application/json
+
+{
+  "email": "prova@gmail.com",
+  "password": "patata1234*"
+}
+
+###Refresh token
+ POST http://localhost:3100/api/v1/refresh
+ Content-Type: application/json
+
+ {
+  "refreshToken": ""
+ }
+
+### Enviar missatge a grup
+POST http://localhost:3100/api/v1/user/messages
+Content-Type: application/json
+Authorization: Bearer 
+
+{
+  "content": "afsafs",
+  "groupId": "957C8700-3C6F-4A56-8120-1DD09BFED4D1"
+}
+
+### Obtenir dades usuari
+GET http://localhost:3100/api/v1/users/E853577D-837E-45F6-83A8-7BF20B262029
+Authorization: Bearer {{access_token}}
+
+### Actualitzar dades usuari
+PUT http://localhost:3100/api/v1/users/380B9905-8BA1-4A8B-97E5-054665DBC3D3
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzODBCOTkwNS04QkExLTRBOEItOTdFNS0wNTQ2NjVEQkMzRDMiLCJlbWFpbCI6InByb3ZhQGdtYWlsLmNvbSIsImlhdCI6MTc0MTI5MDEzNiwiZXhwIjoxNzQxMjkxMzM2fQ.GkhZIkfED8kX4jdnJ_hC7tQxT4tsiUSSYX-vzDWF2hM
+
+{
+  "username": "nou_nom",
+  "password": "patata1234*"
+}
+###
+GET http://localhost:3100/api/v1/users/list
+Authorization: Bearer {{access_token}}
+
+### Obtenir tots els grups
+GET http://localhost:3100/api/v1/groups
+Authorization: Bearer {{access_token}}
+
+### Obtenir missatges d'un grup
+GET http://localhost:3100/api/v1/groups/957C8700-3C6F-4A56-8120-1DD09BFED4D1/messages?page=1&limit=10
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzODBCOTkwNS04QkExLTRBOEItOTdFNS0wNTQ2NjVEQkMzRDMiLCJlbWFpbCI6InByb3ZhQGdtYWlsLmNvbSIsImlhdCI6MTc0MTI5MDEzNiwiZXhwIjoxNzQxMjkxMzM2fQ.GkhZIkfED8kX4jdnJ_hC7tQxT4tsiUSSYX-vzDWF2hM
+
+### Unir-se a grup
+POST http://localhost:3100/api/v1/groups/E853577D-837E-45F6-83A8-7BF20B262029/join
+Authorization: Bearer {{access_token}}
+
+### Sortir de grup
+DELETE http://localhost:3100/api/v1/groups/E853577D-837E-45F6-83A8-7BF20B262029/leave
+Authorization: Bearer {{access_token}}
+
+### Obtenir grups de l'usuari
+GET http://localhost:3100/api/v1/usuari/groups
+Authorization: Bearer {{access_token}}
+
+### Obtenir dades de tots els grups
+GET http://localhost:3100/api/v1/groups/all
+Authorization: Bearer {{access_token}}
+ 
+ 

@@ -1,0 +1,3 @@
+[2025-03-20 23:23:44] ERROR: POST /api/v1/refresh - Status: 403 - IP: ::1
+[2025-03-20 23:23:51] ERROR: POST /api/v1/refresh - Status: 401 - IP: ::1
+[2025-03-20 23:33:21] ERROR: POST /api/v1/refresh - Status: 401 - IP: ::1

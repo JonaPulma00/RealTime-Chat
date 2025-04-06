@@ -1,0 +1,79 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<div class="profile-container">
+  <h2 class="form-title">Actualizar Perfil</h2>
+  
+  <form #profileForm="ngForm" class="profile-form">
+    <div class="form-group">
+      <label for="username">Usuario</label>
+      <div class="input-container">
+        <input type="text" id="username" name="username" [(ngModel)]="user.username"
+               [class.invalid]="validationErrors.username">
+        <span class="input-icon">
+          <i class="fa-regular fa-circle-user"></i>
+        </span>
+      </div>
+      <div class="error-message" *ngIf="validationErrors.username">Usuario requerido</div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Nueva contraseña</label>
+      <div class="input-container">
+        <input type="password" id="password" name="password" [(ngModel)]="user.password"
+               [class.invalid]="validationErrors.passwordRegex">
+        <span class="input-icon">
+          <i class="fa-solid fa-lock"></i>
+        </span>
+      </div>
+      <div class="error-message" *ngIf="validationErrors.passwordRegex">
+        La contraseña debe tener al menos 6 caracteres y un símbolo
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Confirmación de Contraseña</label>
+      <div class="input-container">
+        <input type="password" id="confirmPassword" name="confirmPassword" 
+               [(ngModel)]="user.confirmPassword"
+               [class.invalid]="validationErrors.confirmPassword">
+        <span class="input-icon">
+          <i class="fa-solid fa-lock"></i>
+        </span>
+      </div>
+      <div class="error-message" *ngIf="validationErrors.confirmPassword">
+        Las contraseñas no coinciden
+      </div>
+    </div>
+
+    <div class="confirmation-checkbox">
+      <label class="checkbox-container">
+        <input type="checkbox" [(ngModel)]="user.updateConfirmed" name="updateConfirmed">
+        <span class="checkmark"></span>
+        <span class="checkbox-text">Confirmo, quiero actualizar mis datos</span>
+      </label>
+      <div class="error-message" *ngIf="validationErrors.updateConfirmed">
+        Debes confirmar la actualización de datos
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button type="button" class="cancel-btn" (click)="cancelChanges()">
+        <i class="fa-solid fa-arrows-rotate"></i>
+        Reset
+      </button>
+      <button type="button" class="save-btn" 
+              (click)="attemptSave()"
+              [disabled]="!user.updateConfirmed">
+              <i class="fa-regular fa-floppy-disk"></i>
+        Guardar cambios
+      </button>
+      <button type="button" class="goback-btn" (click)="stepback()">
+        <i class="fa-solid fa-arrow-left"></i>
+        Volver
+      </button>
+    </div>
+    
+    <div class="feedback-message" [class.success]="saveSuccess" [class.error]="saveError">
+      {{ feedbackMessage }}
+    </div>
+  </form>
+</div>

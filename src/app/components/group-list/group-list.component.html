@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<body>
+  <div class="container2">
+    <button (click)="stepBack()" class="return-btn">Volver</button>
+  </div>
+  <div class="container">
+      <h1>Listado de Grupos</h1>
+      <div class="search-container">
+          <input 
+              type="text" 
+              placeholder="Buscar grupos..." 
+              [(ngModel)]="searchTerm"
+              (input)="searchGroups()">
+              <span id="typingEffect"></span>
+          <button> <i id="search-icon" class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+
+      <ul class="room-list">
+          <li *ngFor="let group of filteredGroups" class="room-item">
+            <span class="user-count">{{ group.memberCount }}</span>
+            <img class="group-image" [src]="group.imageUrl" alt="group image">
+            <span class="room-name">{{ group.groupName }}</span>
+            <button 
+                (click)="joinGroup(group.groupId)" 
+                class="enter-button">
+                Entrar al grupo
+            </button>
+          </li>
+      </ul>
+  </div>

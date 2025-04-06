@@ -1,0 +1,82 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<body>
+    <div [class.active]="chat.isSidebarActive"  class="sidebar">
+        <div class="sidebar-header">
+            <div (click)="profile()" class="user-info">
+                <div class="avatar"  style="background-image: url(/avatar.png)"></div>
+                <span  >{{username}}</span>
+            </div>
+        </div>
+        <div class="chat">
+            <div 
+              *ngFor="let group of chat.groups" 
+              class="chat-item"
+              [class.active]="group.groupId === chat.selectedGroupId"
+              (click)="chat.selectGroup(group.groupId)"
+            >
+              <div 
+                class="avatar" 
+                [ngStyle]="{ 'background-image': 'url(' + group.imageUrl + ')' }">
+              </div>
+              <div class="chat-details">
+                  <div class="chat-name">{{ group.groupName }}</div>
+              </div>
+              <div class="dropdown-icon" (click)="$event.stopPropagation(); groupOptions(group.groupId)">
+                <i class="fa-solid fa-angle-down"></i>
+                <div class="group-dropdown" [class.active]="activeDropdown === group.groupId">
+                  <button class="dropdown-item danger" (click)="leaveGroup($event, group.groupId)">Salir del grupo</button>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <div  class="chat-area">
+        <button  (click)="chat.toggleSidebar()" class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="chat-header">
+            <div class="user-info">
+                <div class="avatar" [ngStyle]="{ 'background-image': 'url(' + chat.currentGroupImage + ')' }"></div>
+                <span>{{ chat.currentGroupName }}</span>
+            </div>
+            <div class="header-actions">
+                <i (click)="users()" id="icon-user" class="fa-solid fa-user"></i>
+                <i (click)="logout()" class="fas fa-home" id="icon-home"></i>
+                <i (click)="groups()" id="icon-group" class="fa-solid fa-users-rectangle"></i>
+            </div>
+        </div>
+        <div class="messages">
+            <div 
+            *ngFor="let message of chat.messages" 
+            [ngClass]="{ 'message': true, 'sent': message.sentByUser }"
+          >
+          <div class="message-username">{{ message.username }}</div>
+          {{ message.text }}
+          </div>
+        </div>
+        <div class="message-input">
+          <div *ngIf="chat.messageError" class="input-error">{{ chat.messageError }}</div>
+          <i class="far fa-smile"></i>
+          <input 
+            type="text" 
+            placeholder="Escribe un mensaje..." 
+            [(ngModel)]="chat.messageInput" 
+            (keyup.enter)="chat.sendMessage()"
+            [class.invalid]="chat.messageError">
+          <i class="far fa-image"></i>
+          <button class="send-button" (click)="chat.sendMessage()">Enviar</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" *ngIf="showLeaveModal">
+      <div class="modal-container">
+          <h3>¿Estás seguro que quieres salir de "{{ groupToLeave?.groupName }}"?</h3>
+          <div class="modal-buttons">
+              <button class="modal-button cancel" (click)="cancelLeaveGroup()">Volver</button>
+              <button class="modal-button confirm" (click)="confirmLeaveGroup()">Salir</button>
+          </div>
+      </div>
+  </div>
+</body>
