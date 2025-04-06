@@ -32,32 +32,32 @@
             "scripts": []
           },
           "configurations": {
-  "production": {
-    "budgets": [
-      {
-        "type": "initial",
-        "maximumWarning": "1MB",
-        "maximumError": "2MB"
+        "production": {
+            "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "1MB",
+              "maximumError": "2MB"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "10kB",
+              "maximumError": "20kB"
+            },
+            {
+              "type": "any",
+              "maximumWarning": "100kB",
+              "maximumError": "120kB"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
       },
-      {
-        "type": "anyComponentStyle",
-        "maximumWarning": "10kB",
-        "maximumError": "20kB"
-      },
-      {
-        "type": "inline-fonts",
-        "maximumWarning": "80kB",
-        "maximumError": "100kB"
-      }
-    ],
-    "outputHashing": "all"
-  },
-  "development": {
-    "optimization": false,
-    "extractLicenses": false,
-    "sourceMap": true
-  }
-},
 
           "defaultConfiguration": "production"
         },
